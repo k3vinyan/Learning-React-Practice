@@ -29,7 +29,6 @@ const RecipeComponent = (recipe) =>
         recipeSteps(recipe)
     )
 
-
 const chickenComponent = RecipeComponent(friedChickenRecipe)
 
 ReactDOM.render(chickenComponent, document.getElementById('app'))
