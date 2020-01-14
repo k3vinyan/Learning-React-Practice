@@ -25,7 +25,7 @@ const steps = [
 ]
 
  const friedChickenRecipe = {
-    name: "fried Chicken",
+    name: "Fried Chicken",
     prepTime: "50 mins",
     cookTime: "20 mins",
     steps,

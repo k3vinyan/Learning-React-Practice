@@ -1,0 +1,14 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.recipe-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.recipe-name {
+    text-align: center;
+    padding: 10px 10px 10px 10px;
+}
