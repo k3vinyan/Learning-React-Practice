@@ -3,12 +3,42 @@
     margin: 0;
 }
 
-.recipe-container {
+img {
+    object-fit: cover;
+}
+[class*="-container"] {
     display: flex;
     flex-direction: column;
 }
 
-.recipe-name {
+[class*="-name"] {
     text-align: center;
     padding: 10px 10px 10px 10px;
+}
+
+[class*="-header2"] {
+    text-align: center;
+    padding: 10px 10px 10px 10px;
+}
+
+[class="wrapper"] {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+[class*="-section"]  ul, ol {
+    padding: 20px 20px 20px 20px;
+}
+
+[class*="section"] {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px 10px 10px 10px;
+}
+
+
+[class^="steps"] {
+    margin-left: 10px;
 }

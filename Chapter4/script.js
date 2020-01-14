@@ -2,6 +2,24 @@ import { friedChickenRecipe } from './recipes/friedChicken.js'
 
 //https://www.foodnetwork.com/recipes/fried-chicken-recipe10-3381583
 
+const headerH2 = (title) => 
+    React.createElement('h2', {className: title + '-header2'}, title)
+
+const section = (title, list) =>
+    React.createElement('div', {className: title.toLowerCase() + '-section'},
+        headerH2(title),
+        list
+    )
+
+const wrapper = (...elements) => 
+    React.createElement('div', {className: 'wrapper'}, 
+        elements.map( (el) => 
+            el
+        ) 
+    )
+
+
+    
 const recipeImage = ({image}) =>
     React.createElement('img', {className: 'recipe-image', src: image}, null)
 
@@ -25,8 +43,11 @@ const RecipeComponent = (recipe) =>
     React.createElement('div', {className: 'recipe-container'}, 
         recipeImage(recipe),
         recipeName(recipe),
-        recipeIngredients(recipe),
-        recipeSteps(recipe)
+        wrapper(
+            section('Ingredients', recipeIngredients(recipe)),
+            section('Steps', recipeSteps(recipe))
+        )
+        
     )
 
 const chickenComponent = RecipeComponent(friedChickenRecipe)
