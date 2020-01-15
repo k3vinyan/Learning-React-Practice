@@ -1,0 +1,73 @@
+@mixin grayout {
+    -webkit-filter: grayscale(100%);
+    -moz-filter: grayscale(100%);
+    -ms-filter: grayscale(100%);
+    -o-filter: grayscale(100%);
+    filter: grayscale(100%);
+    //filter: gray;
+}
+
+@mixin remove-grayout {
+    -webkit-filter: grayscale(0%);
+    -moz-filter: grayscale(0%);
+    -ms-filter: grayscale(0%);
+    -o-filter: grayscale(0%);
+    filter: grayscale(0%) !important;
+    filter: grayscale(0%) !important;
+}
+
+main {
+    height: 100vh;
+
+    header {
+        height: auto;
+    }
+
+    .container-recipe {
+        height: 100%;
+    }
+}
+
+ul, ol {
+    list-style-type: none;
+}
+
+h1, h2, p {
+    text-align: center;
+}
+
+img {
+    object-fit: cover;
+    height: 50%;
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+}
+
+.container-recipe {
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    height: 100%;
+}
+
+.article-recipe {
+    border: 1px solid black;
+    width: 200px;
+    @include grayout();
+
+}
+
+.article-recipe:hover {
+    @include remove-grayout();
+}
+
+.section-a-recipe {
+    height: 50%;
+}
+
+.section-b-recipe {
+    height: 50%;
+}

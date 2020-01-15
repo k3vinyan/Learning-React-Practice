@@ -1,48 +1,55 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import './style.scss'
 
 import { Recipes } from '../data/recipes.json.js'
 
-const Recipe = ({image, name, description, ingredient, step}) => 
-    <article>
-        <section>
-            <img src={image} />
-            <div>
-                <h2>{name}</h2>
-                <p>{description}</p>
-            </div>
-        </section>
-        <section>
-            <div>
-                <h2>Ingredient</h2>
-                <ul>
-                    {ingredient.map( (ingredient, i) => 
-                        <li key={i}>
-                            <p>{ingredient.amount} {ingredient.unit} {ingredient.name}</p>
-                        </li>
-                    )}
-                </ul>
-            </div>
-            <div>
-               <h2>Instruction</h2>
-               <ol>
-                   {step.map( (step, i) => 
-                        <li key={i}>
-                            <p>{step.description}</p>
-                        </li>
-                   )}
-               </ol>
-            </div>
-        </section>
-    </article>
+//need to fix broken image!!!!
 
+const Recipe = function({image, name, description, ingredient, step}) {
+    return (
+        <article className="article-recipe" id={name}>
+            <section className="section-a-recipe">
+                <img src={image} />
+            </section>
+            <section className="section-b-recipe">
+                <section>
+                    <div className="section-b-recipe-info">
+                        <h2>{name}</h2>
+                        <p>{description}</p>
+                    </div>
+                    
+                    <h2>Ingredient</h2>
+                    <ul className="list-ingredient">
+                        {ingredient.map( (ingredient, i) => 
+                            <li key={i}>
+                                <p>{ingredient.amount} {ingredient.unit} {ingredient.name}</p>
+                            </li>
+                        )}
+                    </ul>
+                </section>
+                <section>
+                    <h2>Instructions</h2>
+                    <ol className="list-step">
+                        {step.map( (step, i) => 
+                                <li key={i}>
+                                    <p>{step.description}</p>
+                                </li>
+                        )}
+                    </ol>
+                </section>       
+            </section>
+        </article>
+    )
+}
+    
 
 const Menu = ({title, recipe}) =>
-    <main>
-        <header>
+    <main className="main-menu">
+        {/* <header>
             <h1>{title}</h1>
-        </header>
-        <div className="recipes">
+        </header> */}
+        <div className="container-recipe">
             {recipe.recipe.map( (recipe, i) =>
                 <Recipe key={i}
                     {...recipe}
@@ -52,8 +59,8 @@ const Menu = ({title, recipe}) =>
     </main>
 
 const myMenu = <Menu title="Kevin's Delicious Food" recipe={Recipes} />
-
 ReactDOM.render(myMenu, document.getElementById('app'))
+
 
 
 
