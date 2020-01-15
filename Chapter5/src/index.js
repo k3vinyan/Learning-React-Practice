@@ -3,22 +3,20 @@ import ReactDOM from 'react-dom'
 
 import { Recipes } from '../data/recipes.json.js'
 
-console.log(Recipes.recipe[0].step[0].description)
-
-const Recipe = (props) => 
+const Recipe = ({image, name, description, ingredient, step}) => 
     <article>
         <section>
-            <img src={props.image} />
+            <img src={image} />
             <div>
-                <h2>{props.name}</h2>
-                <p>{props.description}</p>
+                <h2>{name}</h2>
+                <p>{description}</p>
             </div>
         </section>
         <section>
             <div>
                 <h2>Ingredient</h2>
                 <ul>
-                    {props.ingredient.map( (ingredient, i) => 
+                    {ingredient.map( (ingredient, i) => 
                         <li key={i}>
                             <p>{ingredient.amount} {ingredient.unit} {ingredient.name}</p>
                         </li>
@@ -28,7 +26,7 @@ const Recipe = (props) =>
             <div>
                <h2>Instruction</h2>
                <ol>
-                   {props.step.map( (step, i) => 
+                   {step.map( (step, i) => 
                         <li key={i}>
                             <p>{step.description}</p>
                         </li>
@@ -39,25 +37,21 @@ const Recipe = (props) =>
     </article>
 
 
-const Menu = (props) =>
+const Menu = ({title, recipe}) =>
     <main>
         <header>
-            <h1>{props.title}</h1>
+            <h1>{title}</h1>
         </header>
         <div className="recipes">
-            {props.recipe.recipe.map( (recipe, i) =>
+            {recipe.recipe.map( (recipe, i) =>
                 <Recipe key={i}
-                    image={recipe.image}
-                    name={recipe.name}
-                    description={recipe.description}
-                    ingredient={recipe.ingredient}
-                    step={recipe.step}
+                    {...recipe}
                 />
             )}
         </div>
     </main>
 
-const myMenu = <Menu title="My Menu" recipe={Recipes} />
+const myMenu = <Menu title="Kevin's Delicious Food" recipe={Recipes} />
 
 ReactDOM.render(myMenu, document.getElementById('app'))
 
