@@ -3,7 +3,9 @@ import ReactDOM from 'react-dom'
 
 import { Recipes } from '../data/recipes.json.js'
 
-const recipe = (props) => 
+console.log(Recipes.recipe[0].step[0].description)
+
+const Recipe = (props) => 
     <article>
         <section>
             <img src={props.image} />
@@ -13,14 +15,26 @@ const recipe = (props) =>
             </div>
         </section>
         <section>
-            <h2>ingredient</h2>
-            <ul>
-                {props.ingredient.map( (ingred, i) => 
-                    <li key={i}>
-                        {ingred.amount} {ingred.unit} {ingred.name}
-                    </li>
-                )}
-            </ul>
+            <div>
+                <h2>Ingredient</h2>
+                <ul>
+                    {props.ingredient.map( (ingredient, i) => 
+                        <li key={i}>
+                            <p>{ingredient.amount} {ingredient.unit} {ingredient.name}</p>
+                        </li>
+                    )}
+                </ul>
+            </div>
+            <div>
+               <h2>Instruction</h2>
+               <ol>
+                   {props.step.map( (step, i) => 
+                        <li key={i}>
+                            <p>{step.description}</p>
+                        </li>
+                   )}
+               </ol>
+            </div>
         </section>
     </article>
 
@@ -31,14 +45,21 @@ const Menu = (props) =>
             <h1>{props.title}</h1>
         </header>
         <div className="recipes">
-
+            {props.recipe.recipe.map( (recipe, i) =>
+                <Recipe key={i}
+                    image={recipe.image}
+                    name={recipe.name}
+                    description={recipe.description}
+                    ingredient={recipe.ingredient}
+                    step={recipe.step}
+                />
+            )}
         </div>
     </main>
 
-const test = recipe(Recipes.recipe[0])
-console.log(test)
+const myMenu = <Menu title="My Menu" recipe={Recipes} />
 
-ReactDOM.render(test, document.getElementById('app'))
+ReactDOM.render(myMenu, document.getElementById('app'))
 
 
 
