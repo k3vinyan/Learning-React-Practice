@@ -62,17 +62,20 @@ Star.propTypes = {
 // })
 
 //Presentational Component
-const StarRating =({starsSelected=0, totalStars=5, onRate=f=>f}) =>
-    <div className="star-rating">
-        {
-            [...Array(totalStars)].map( (n, i) =>
-                <Star starsSelected={i < starsSelected} key={i}
-                    onClick={ ()=> onRate(i +  1)}
-                />
-            )
-        }
-        <p>{starsSelected} of {totalStars}</p>
-    </div>
+const StarRating =({starsSelected=0, totalStars=5, onRate=f=>f}) => {
+   console.log('cat')
+   return( <div className="star-rating">
+    {
+        [...Array(totalStars)].map( (n, i) =>
+            <Star starsSelected={i < starsSelected} key={i}
+                onClick={ ()=> onRate(i +  1)}
+            />
+        )
+    }
+    <p>{starsSelected} of {totalStars}</p>
+   </div> )  
+}
+   
 
 
 export { StarRating }
