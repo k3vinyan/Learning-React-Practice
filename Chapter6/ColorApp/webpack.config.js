@@ -2,7 +2,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require('path')
 
 const config = {
-    entry: './src/index.js',
+    entry: './src/app.js',
     output: {
         path: path.join(__dirname, 'dist'),
         filename: 'bundle.js'
@@ -16,6 +16,10 @@ const config = {
                 query: {
                     presets: ['@babel/preset-env', '@babel/preset-react']
                 }
+            },
+            {
+                test: /\.css/i,
+                use: ['style-loader', 'css-loader']
             }
         ]
     },
@@ -28,7 +32,7 @@ const config = {
     plugins:[new HtmlWebpackPlugin({
         title: 'Color App',
         app: 'app',
-        template: 'src/assets/index.html'
+        template: 'src/assets/indexTemplate.html'
     })],
     mode: 'development'
 
