@@ -26,24 +26,28 @@ const AddColorForm = ({ onNewColor=f=>f} ) => {
 }
 
 
-const ColorList = ({ colors=[] }) => 
+const ColorList = ({ colors=[], onRate=f=>f, onRemove=f=>f }) => 
     <section className="color-list">
         {(colors.length === 0) ?
             <p>No Colors Listed.  (Add a Color)</p> :
             colors.map( color => 
-                <Color key={color.id} {...color} />
+                <Color 
+                    key={color.id} {...color} 
+                    onRate={(rating) => onRate(color.id, rating)}
+                />
             )
         }   
     </section>
 
-const Color = ({ title, color, rating= 0}) =>
+const Color = ({ title, color, rating= 0, onRemove=f=>f, onRate=f=>f }) =>
     <section>
         <h1>{title}</h1>
+        <button onClick={onRemove}>X</button>
         <div className="color"
             style={{ backgroundColor: color }}>
         </div>
         <div>
-            <StarRating starsSelected={rating} />
+            <StarRating starsSelected={rating} onRate={onRate}/>
         </div>
     </section>
 
@@ -95,7 +99,6 @@ class App extends Component {
 
     render() {
        const { addColor, rateColor, removeColor } = this
-       console.log(rateColor)
        const { colors } = this.state
        return (
            <div className="app">
